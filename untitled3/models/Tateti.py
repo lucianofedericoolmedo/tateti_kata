@@ -26,4 +26,17 @@ class Tateti(object):
     def circle_make_diagonal_winner(self):
         return self.board.check_diagonal_win(Circle())
 
+    def cross_make_horizontal_win(self):
+        return self.board.check_horizontal_win(Cross())
+
+
+    def circle_make_horizontal_win(self):
+        return self.board.check_horizontal_win(Circle())
+
+    def cross_make_vertical_win(self):
+        return self.board.check_vertical_win(Cross())
+
+
+    def circle_make_vertical_win(self):
+        return self.board.check_vertical_win(Circle())
 

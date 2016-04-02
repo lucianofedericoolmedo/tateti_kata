@@ -80,6 +80,46 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(self.game.circle_make_diagonal_winner)
 
 
+    def test_given_a_player_that_put_cross_in_a_board_when_check_if_someone_make_horizontal_win_then_it_assert_cross_wins(self):
+
+        self.game.put_cross((1, 1))
+        self.game.put_circle((2, 1))
+        self.game.put_cross((1, 2))
+        self.game.put_circle((2, 2))
+        self.game.put_cross((1, 3))
+
+        self.assertTrue(self.game.cross_make_horizontal_win())
+
+    def test_given_a_player_that_put_circle_in_a_board_when_check_if_someone_make_horizontal_win_then_it_assert_circle_wins(self):
+
+        self.game.put_circle((1, 1))
+        self.game.put_cross((2, 1))
+        self.game.put_circle((1, 2))
+        self.game.put_cross((2, 2))
+        self.game.put_circle((1, 3))
+
+        self.assertTrue(self.game.circle_make_horizontal_win())
+
+
+    def test_given_a_player_that_put_cross_in_a_board_when_check_if_someone_make_vertical_win_then_it_assert_cross_wins(self):
+
+        self.game.put_cross((1, 1))
+        self.game.put_circle((1, 2))
+        self.game.put_cross((2, 1))
+        self.game.put_circle((2, 2))
+        self.game.put_cross((3, 1))
+
+        self.assertTrue(self.game.cross_make_vertical_win())
+
+    def test_given_a_player_that_put_circle_in_a_board_when_check_if_someone_make_vertical_win_then_it_assert_circle_wins(self):
+
+        self.game.put_circle((1, 1))
+        self.game.put_cross((1, 2))
+        self.game.put_circle((2, 1))
+        self.game.put_cross((2, 2))
+        self.game.put_circle((3, 1))
+
+        self.assertTrue(self.game.circle_make_vertical_win())
 
 
 
