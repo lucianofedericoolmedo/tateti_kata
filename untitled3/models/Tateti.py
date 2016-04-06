@@ -40,3 +40,10 @@ class Tateti(object):
     def circle_make_vertical_win(self):
         return self.board.check_vertical_win(Circle())
 
+    def someone_win(self):
+        return (self.circle_make_diagonal_winner() or
+            self.cross_make_diagonal_winner() or
+            self.circle_make_horizontal_win() or
+            self.cross_make_horizontal_win() or
+            self.circle_make_vertical_win() or
+            self.cross_make_vertical_win())
