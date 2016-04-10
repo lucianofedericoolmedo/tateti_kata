@@ -1,6 +1,6 @@
-from models.Board import Board
-from models.Token import Cross, Circle,Token
-from models.CustomExceptions import PlayerMovedTwiceInARowException
+from .Board import Board
+from .Token import Cross, Circle,Token
+from .CustomExceptions import PlayerMovedTwiceInARowException
 
 
 class Tateti(object):

@@ -1,6 +1,6 @@
-from models.Token import Cross, Circle, Token
+from .Token import Cross, Circle, Token
 from .CustomExceptions import PositionAlreadyTakenException
-from models.Lines import row, Line, column, slash_diagonal, backSlash_diagonal
+from .Lines import row, Line, column, slash_diagonal, backSlash_diagonal
 from _functools import reduce
 
 

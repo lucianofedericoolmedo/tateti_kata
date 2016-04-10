@@ -1,16 +1,14 @@
-from models.CustomExceptions import PlayerMovedTwiceInARowException,PositionAlreadyTakenException
-from models.Tateti import Tateti
 from unittest.case import TestCase
 import unittest
-from models.Lines import row, slash_diagonal, column, backSlash_diagonal
+from program.models.CustomExceptions import PositionAlreadyTakenException, PlayerMovedTwiceInARowException
+from program.models.Lines import row, slash_diagonal, column, backSlash_diagonal
+from program.models.Tateti import Tateti
 
 
 class TaTeTiTests(TestCase):
-    
-    
+
     def setUp(self):
         self.game = Tateti()
-
 
     def test_given_an_empty_board_when_i_put_a_cross_on_a_given_position_then_I_check_the_position_of_the_cross_is_the__given_one(
             self):
