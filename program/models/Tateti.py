@@ -1,11 +1,11 @@
-from CustomExceptions import PlayerMovedTwiceInARowException
 from models.Board import Board
 from models.Token import Cross, Circle,Token
+from models.CustomExceptions import PlayerMovedTwiceInARowException
 
 
 class Tateti(object):
     def __init__(self):
-        self.board = Board()
+        self.board = Board(3,3)
         self.last_move = Token()
 
     def put_cross(self,position):
