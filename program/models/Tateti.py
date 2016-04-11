@@ -5,14 +5,14 @@ from .CustomExceptions import PlayerMovedTwiceInARowException
 
 class Tateti(object):
     def __init__(self):
-        self.board = Board(3,3)
+        self.board = Board(3, 3)
         self.last_move = Token()
 
-    def put_cross(self,position):
-        self.make_move(Cross(),position)
+    def put_cross(self, position):
+        self.make_move(Cross(), position)
 
     def put_circle(self,position):
-        self.make_move(Circle(),position)
+        self.make_move(Circle(), position)
 
     def make_move(self, token, position):
         if self.last_move.is_equal(token):

@@ -1,4 +1,4 @@
-from .Token import Cross, Circle, Token
+from .Token import Cross, Circle, EmptyToken
 from .CustomExceptions import PositionAlreadyTakenException
 from .Lines import row, Line, column, slash_diagonal, backSlash_diagonal
 from _functools import reduce
@@ -14,36 +14,36 @@ class Board(object):
         self.diagonals = self._init_diagonals()
     
     def _init_map(self, rows, columns):
-        map = {}
-        for r in [int for _ in range(rows)]:
-            for c in [int for _ in range(columns)]:
-                map.insert(row(r)[c], Token())
-        return map
+        cell = {}
+        for r in range(rows):
+            for c in range(columns):
+                cell[row(r)[c]] = EmptyToken()
+        return cell
     
     def _init_rows(self, rows, columns):
         res = []
-        for r in [int for _ in range(rows)]:
-            localRow = Line([])
-            for c in [int for _ in range(columns)]:
-                localRow.positions[c] = self.representation[row(r)[c]]
-            res.append(localRow)
+        for r in range(rows):
+            local_row = Line()
+            for c in range(columns):
+                local_row.positions[c] = self.representation[row(r)[c]]
+            res.append(local_row)
         return res
     
     def _init_columns(self, rows, columns):
         res = []
-        for c in [int for _ in range(columns)]:
-            localColumn = Line([])
-            for r in [int for _ in range(rows)]:
-                localColumn.positions[r] = self.representation[column(c)[r]]
-            res.append(localColumn)
+        for c in range(columns):
+            local_column = Line()
+            for r in range(rows):
+                local_column.positions[r] = self.representation[column(c)[r]]
+            res.append(local_column)
         return res
     
     def _init_diagonals(self):
-        res = [Line([]), Line([])]
-        for i in [int for _ in range(3)]:
-            res[0].positions[i] = self.representation[slash_diagonal(i)]
-        for i in [int for _ in range(3)]:
-            res[1].positions[i] = self.representation[backSlash_diagonal(i)]
+        res = [Line(), Line()]
+        for i in range(3):
+            res[0].positions[i] = self.representation[slash_diagonal()[i]]
+        for i in range(3):
+            res[1].positions[i] = self.representation[backSlash_diagonal()[i]]
         return res
     
     
@@ -55,15 +55,14 @@ class Board(object):
         self.representation[position] = element
 
     def contains_element_at_position(self,position):
-        return self.representation.has_key(position)
+        return not self.representation[position].is_empty()
 
     def contains_this_elem_at_position(self,position,token):
         if self.contains_element_at_position(position):
             return self.representation[position].is_equal(token)
 
-
-    def check_horizontal_win(self,token):
-        return reduce(lambda x,y: x or y, map(lambda row: row.line_full_with(token), self.rows))
+    def check_horizontal_win(self, token):
+        return reduce(lambda x, y: x or y, map(lambda local_row: local_row.line_full_with(token), self.rows))
 
     def check_vertical_win(self,token):
         return reduce(lambda x,y: x or y, map(lambda col: col.line_full_with(token), self.columns))
