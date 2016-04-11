@@ -20,8 +20,9 @@ def column(c):
 
 class Line:
     
-    def __init__(self):
-        self.positions = [EmptyToken() for _ in range(3)]
+    def __init__(self, representation):
+        self.positions = [(int, int) for _ in range(3)]
+        self.representation = representation
 
     def line_full_with(self, token):
-        return reduce(lambda x, y: x and y, map(lambda t: t.is_equal(token), self.positions))
+        return reduce(lambda x, y: x and y, map(lambda p: self.representation[p].is_equal(token), self.positions))

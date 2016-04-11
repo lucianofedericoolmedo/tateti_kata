@@ -23,27 +23,27 @@ class Board(object):
     def _init_rows(self, rows, columns):
         res = []
         for r in range(rows):
-            local_row = Line()
+            local_row = Line(self.representation)
             for c in range(columns):
-                local_row.positions[c] = self.representation[row(r)[c]]
+                local_row.positions[c] = row(r)[c]
             res.append(local_row)
         return res
     
     def _init_columns(self, rows, columns):
         res = []
         for c in range(columns):
-            local_column = Line()
+            local_column = Line(self.representation)
             for r in range(rows):
-                local_column.positions[r] = self.representation[column(c)[r]]
+                local_column.positions[r] = column(c)[r]
             res.append(local_column)
         return res
     
     def _init_diagonals(self):
-        res = [Line(), Line()]
+        res = [Line(self.representation), Line(self.representation)]
         for i in range(3):
-            res[0].positions[i] = self.representation[slash_diagonal()[i]]
+            res[0].positions[i] = slash_diagonal()[i]
         for i in range(3):
-            res[1].positions[i] = self.representation[backSlash_diagonal()[i]]
+            res[1].positions[i] = backSlash_diagonal()[i]
         return res
     
     
